@@ -212,3 +212,61 @@
   .app-canvas:has(.responsible) .auto-save { font-size: .9rem; }
   .app-canvas:has(.responsible) .summary-grid .card { min-height: 56px; }
 }
+
+.auth-canvas {
+  display: grid;
+  align-content: center;
+  padding-bottom: 24px;
+}
+
+.auth-card {
+  display: grid;
+  gap: 14px;
+  margin-block: 36px;
+  text-align: left;
+}
+
+.auth-card > .icon {
+  color: var(--teal);
+}
+
+.auth-card h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.auth-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.login-form label {
+  display: grid;
+  gap: 7px;
+  font-family: "Segoe UI Semibold","Segoe UI",sans-serif;
+}
+
+.inline-error {
+  margin: 10px 0;
+  padding: 10px 12px;
+  border: 1px solid #e1a071;
+  border-radius: 10px;
+  color: #8b3f12;
+  background: #fff6ef;
+}
+
+.sync-pill {
+  position: sticky;
+  z-index: 12;
+  top: 8px;
+  width: max-content;
+  max-width: 100%;
+  margin: 8px auto 0;
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--teal);
+  box-shadow: var(--shadow);
+  font-size: .9rem;
+}
