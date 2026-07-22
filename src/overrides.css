@@ -1,0 +1,214 @@
+/* Ajustes de fidelidad después de la primera comparación a 390 px. */
+.header { grid-template-columns: 44px 1fr 44px; }
+.header h1 { font-size: 1.48rem; white-space: nowrap; }
+.header .status-chip { transform: none; justify-self: end; padding-inline: 8px; font-size: .78rem; }
+.home-header { grid-template-columns: 1fr 74px 48px; gap: 6px; }
+.home-header h1 { font-size: 2.03rem; letter-spacing: -.07em; white-space: nowrap; }
+.home-header .role-chip { padding-inline: 8px; }
+.home-header .avatar { width: 48px; height: 48px; }
+.home-header .avatar { color: transparent; background: #dce2e3 url('/avatar-maria.png') center/cover no-repeat; }
+@media (max-width: 389px) {
+  .header h1 { font-size: 1.38rem; }
+  .home-header { grid-template-columns: 1fr 70px 46px; gap: 5px; }
+  .home-header h1 { font-size: 1.88rem; }
+}
+
+/* La aplicación puede mostrarse dentro de un viewport de escritorio aunque el
+   lienzo móvil mida 430 px. Por eso esta corrección debe ser global y no
+   depender del ancho de la ventana del navegador. */
+.app-canvas:has(.sticky-action) {
+  height: 100dvh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.app-canvas:has(.sticky-action) .screen-pad {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding-bottom: 20px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+.sticky-action {
+  flex: 0 0 auto;
+  position: static;
+  z-index: auto;
+  bottom: auto;
+  left: auto;
+  width: calc(100% + 40px);
+  margin: 0 -20px 4px;
+  transform: none;
+  background: var(--bg);
+}
+
+.button-link {
+  text-decoration: none;
+}
+
+.app-canvas:has(.sticky-action) > .bottom-nav {
+  flex: 0 0 auto;
+  position: static;
+  left: auto;
+  width: calc(100% + 40px);
+  margin: 0 -20px;
+  transform: none;
+}
+
+@media (max-width: 430px) {
+  .sticky-action {
+    width: calc(100% + 32px);
+    margin: 0 -16px 4px;
+  }
+
+  .app-canvas:has(.sticky-action) > .bottom-nav {
+    width: calc(100% + 32px);
+    margin-inline: -16px;
+  }
+}
+
+/* Densidad móvil contrastada con las referencias normalizadas a 390 px. */
+@media (max-width: 430px) {
+  :root { font-size: 13px; }
+  .app-canvas { padding: 0 16px calc(92px + env(safe-area-inset-bottom)); }
+  .header { min-height: 52px; grid-template-columns: 40px 1fr 40px; }
+  .header h1 { font-size: 1.55rem; }
+  .header-spacer, .icon-button { width: 40px; height: 40px; }
+  .header .status-chip { min-height: 28px; padding: 4px 7px; font-size: .73rem; }
+  .home-header { min-height: 74px; grid-template-columns: 1fr 70px 42px; }
+  .home-header h1 { font-size: 1.9rem; letter-spacing: -.055em; }
+  .home-header .avatar { width: 42px; height: 42px; }
+  .role-chip, .status-chip { min-height: 28px; padding: 4px 9px; }
+  .hero-action { min-height: 58px; margin-bottom: 23px; border-radius: 8px; font-size: 1.18rem; }
+  .plus-disc { width: 34px; height: 34px; }
+  .button { min-height: 44px; padding: 8px 12px; font-size: 1rem; }
+  .section { gap: 9px; margin-bottom: 24px; }
+  .section > h2 { margin-inline: 0; font-size: 1.6rem; }
+  .card { padding: 13px; border-radius: 11px; }
+  .card-button { padding: 13px; }
+  .card-button h3 { margin: 9px 0 2px; font-size: 1.48rem; }
+  .card-button p { font-size: .98rem; }
+  .count-meta { display: flex; gap: 18px; margin-top: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); color: var(--muted); }
+  .count-meta span { display: flex; align-items: center; gap: 6px; }
+  .progress-wrap { gap: 6px; margin: 10px 0 8px; }
+  .progress { height: 7px; }
+  .muted-note, .warning-text { margin-top: 8px !important; }
+  .card-cta { margin-top: 8px; font-size: 1rem; }
+  .card-cta--primary { min-height: 38px; margin-top: 9px; padding: 8px 12px; border-radius: 7px; color: #fff; background: var(--teal); justify-content: center; gap: 10px; }
+  .card-cta--primary .icon { position: absolute; right: 28px; }
+  .count-card--cerrado .card-cta { display: none; }
+  .screen-pad { gap: 12px; padding: 10px 0 8px; }
+  .intro { margin: 0 0 6px; font-size: 1.05rem; line-height: 1.35; }
+  .screen-pad label { position: relative; width: 100%; grid-template-columns: max-content max-content 1fr; justify-content: stretch; gap: 5px; font-size: 1rem; }
+  .screen-pad label > input, .screen-pad label > select, .screen-pad label > textarea, .screen-pad label > .field-error { grid-column: 1 / -1; }
+  .screen-pad input, .screen-pad select, .screen-pad textarea, .modal input, .modal select, .modal textarea { min-height: 46px; padding: 8px 11px; border-radius: 8px; }
+  .screen-pad textarea, .modal textarea { min-height: 70px; }
+  .responsible { padding: 12px; }
+  .responsible h3 { margin-bottom: 9px; font-size: 1.14rem; }
+  .responsible > div, .context-meta { gap: 8px; }
+  .auto-save { padding: 4px 0; }
+  .summary-grid { gap: 8px; }
+  .summary-grid .card { min-height: 62px; padding: 9px; }
+  .sticky-action { bottom: calc(64px + env(safe-area-inset-bottom)); padding: 7px 16px; }
+  .app-canvas:has(.sticky-action) { padding-bottom: calc(154px + env(safe-area-inset-bottom)); scroll-padding-bottom: calc(154px + env(safe-area-inset-bottom)); }
+  .app-canvas:has(.sticky-action) .screen-pad { padding-bottom: 92px; }
+  .app-canvas:has(.sticky-action) .pending-list { padding-bottom: 8px; }
+  .sticky-action .button { min-height: 44px; }
+  .sticky-action p { margin-bottom: 4px; font-size: .9rem; }
+  .bottom-nav { min-height: calc(64px + env(safe-area-inset-bottom)); }
+  .nav-item { min-height: 60px; font-size: .72rem; }
+  .saved-line { font-size: .95rem; }
+  .context-card { gap: 9px; }
+  .context-line > .icon { width: 27px; height: 27px; }
+  .context-line strong { font-size: 1.17rem; }
+  .context-line span { font-size: .96rem; }
+  .context-meta { padding-top: 9px; }
+  .search-row { grid-template-columns: 1fr 54px; gap: 8px; }
+  .search-box { min-height: 48px; padding-inline: 11px !important; border-radius: 9px; }
+  .search-box input { min-height: 42px !important; }
+  .scan-button { border-radius: 9px; }
+  .scan-help { font-size: .96rem; }
+  .article-card { gap: 12px; }
+  .product-art { flex-basis: 76px; min-height: 80px; border-radius: 8px; }
+  .article-card h2 { font-size: 1.18rem; }
+  .article-card p { margin-bottom: 6px; font-size: .96rem; }
+  .segmented button { min-height: 46px; font-size: 1rem; }
+  .total-card { font-size: 1.12rem; }
+  .lot-card h3 { font-size: 1.28rem; }
+  .lot-actions { top: 4px; right: 5px; }
+  .lot-actions button { width: 38px; height: 38px; }
+  .lot-card > h3, .lot-card > p { padding-right: 72px; }
+  .lot-form { gap: 7px; }
+  .warning-card, .success-card { padding: 13px; }
+  .warning-card strong, .success-card strong { font-size: 1.22rem; }
+  .pending-list { gap: 8px; }
+  .pending-card { gap: 10px; padding: 12px; }
+  .pending-actions { margin-top: 9px; }
+  .pending-actions .button { min-height: 40px; }
+  .stat-grid .card { padding: 10px; }
+  .stat-grid strong { font-size: 1.65rem; }
+  .catalog-card-button { padding: 14px; }
+  .catalog-card h2 { font-size: 1.3rem; }
+  .client-head, .warehouse-row { padding: 12px; }
+  .catalog-card-button { padding: 10px 12px; }
+  .catalog-card h2 { font-size: 1.2rem; }
+  .catalog-card p { margin: 3px 0 6px; font-size: .95rem; }
+  .catalog-card dl { gap: 8px; margin-top: 8px; }
+  .catalog-card-button > .icon { top: 14px; right: 14px; }
+  .client-head { grid-template-columns: 44px 1fr auto 20px; padding: 10px; }
+  .client-icon { width: 44px; height: 44px; }
+  .client-detail { padding: 0 10px 10px; }
+  .client-detail h3 { margin: 10px 0 8px; font-size: 1.16rem; }
+  .warehouse-row { grid-template-columns: 38px 1fr auto 18px; margin-bottom: 7px; padding: 8px; }
+  .client-actions { padding: 7px 0; }
+  .closed-screen { gap: 12px; }
+  .closed-context { padding: 8px 12px; }
+  .closed-context > div { display: flex; align-items: center; gap: 12px; min-height: 42px; border-bottom: 1px solid var(--border); }
+  .closed-context > div:last-child { border-bottom: 0; }
+  .closed-context .icon { width: 23px; height: 23px; color: var(--navy); }
+  .closed-context strong { font-size: 1.08rem; }
+  .closed-screen .closed-banner { min-height: 84px; }
+  .closed-screen .timeline { gap: 11px; margin-bottom: 6px; }
+  .closed-screen .timeline > div { padding-left: 42px; }
+  .closed-screen .timeline-dot { width: 32px; height: 32px; }
+  .closed-screen .reopen-note { margin: -6px 0 0; text-align: center; color: var(--muted); font-size: .85rem; }
+
+  /* El pie de acción permanece en el flujo: nunca flota sobre tarjetas o campos. */
+  .app-canvas:has(.sticky-action) { padding-bottom: 0; scroll-padding-bottom: 0; }
+  .app-canvas:has(.sticky-action) .screen-pad { padding-bottom: 20px; }
+  .sticky-action {
+    position: static;
+    bottom: auto;
+    left: auto;
+    width: calc(100% + 32px);
+    margin: 0 -16px 4px;
+    transform: none;
+    background: var(--bg);
+  }
+  .count-card--borrador .muted-note { white-space: nowrap; font-size: .82rem; }
+  .count-card--borrador .count-meta { padding-block: 6px; }
+  .count-card--borrador .progress-wrap { margin-block: 7px 5px; }
+  .count-card .card-button { position: relative; padding: 10px 12px; }
+  .count-card .status-chip { min-height: 24px; padding-block: 2px; }
+  .count-card .card-button h3 { margin-top: 6px; }
+  .count-card .progress-wrap { margin-block: 6px 4px; }
+  .count-card .muted-note { margin-top: 4px !important; }
+  .count-card--en-revisión .card-cta { position: absolute; right: 10px; top: 50%; margin: 0; font-size: 0; transform: translateY(-50%); }
+  .count-card--en-revisión .card-cta .icon { width: 20px; height: 20px; }
+  .count-card--en-revisión .card-button { padding-block: 8px; }
+  .count-card--en-revisión .card-button h3 { margin-top: 4px; font-size: 1.35rem; }
+  .count-card--en-revisión .progress-wrap { gap: 3px; margin-block: 4px 2px; }
+  .count-card--en-revisión .muted-note { margin-top: 2px !important; font-size: .9rem; }
+  .app-canvas:has(.responsible) .header { min-height: 44px; }
+  .app-canvas:has(.responsible) .screen-pad { gap: 8px; padding-top: 6px; }
+  .app-canvas:has(.responsible) .intro { margin-bottom: 2px; font-size: .98rem; }
+  .app-canvas:has(.responsible) .screen-pad input,
+  .app-canvas:has(.responsible) .screen-pad select { min-height: 40px; }
+  .app-canvas:has(.responsible) .responsible { padding: 9px 12px; }
+  .app-canvas:has(.responsible) .auto-save { font-size: .9rem; }
+  .app-canvas:has(.responsible) .summary-grid .card { min-height: 56px; }
+}
