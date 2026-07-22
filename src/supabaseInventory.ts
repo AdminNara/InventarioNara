@@ -36,6 +36,13 @@ function tomorrowIso() {
 }
 
 export async function loadInventoryState(client: SupabaseClient): Promise<AppState> {
+  const { data: authData, error: authError } = await client.auth.getUser();
+  raise(authError);
+  const authUserId = authData.user?.id;
+  if (!authUserId) throw new PermissionDeniedError('No hay sesión activa.');
+  const profileResponse = await client.from('app_users').select('id,name,role,avatar').eq('auth_user_id', authUserId).maybeSingle();
+  raise(profileResponse.error);
+  if (!profileResponse.data) throw new PermissionDeniedError('Tu usuario no está vinculado a un perfil de Inventario Nara.');
   const [
     usersResponse,
     clientsResponse,
@@ -79,9 +86,9 @@ export async function loadInventoryState(client: SupabaseClient): Promise<AppSta
     role: row.role,
     avatar: row.avatar,
   }));
-  if (!users.length) throw new PermissionDeniedError('Tu usuario no está vinculado a un perfil de Inventario Nara.');
-
-  const role = users[0].role;
+  const profile = profileResponse.data as AppUserRow;
+  const displayUsers = users.some((user) => user.id === profile.id) ? users : [profile, ...users];
+  const role = profile.role;
   const lotsByLine = new Map<string, Lot[]>();
   ((lotsResponse.data ?? []) as LotRow[]).forEach((row) => {
     const lot: Lot = {
@@ -106,7 +113,7 @@ export async function loadInventoryState(client: SupabaseClient): Promise<AppSta
     version: 2,
     role,
     demoNow: isoNow(),
-    users,
+    users: displayUsers,
     clients: ((clientsResponse.data ?? []) as ClientRow[]).map((row): Client => ({ id: row.id, name: row.name, active: row.active })),
     warehouses: ((warehousesResponse.data ?? []) as WarehouseRow[]).map((row): Warehouse => ({
       id: row.id,
@@ -233,6 +240,47 @@ export async function sendInventoryCountToReview(client: SupabaseClient, count: 
     actor_id: actorId,
     occurred_at: submittedAt,
   })).error);
+}
+
+export async function saveArticle(client: SupabaseClient, article: Article) {
+  raise((await client.from('articles').upsert({
+    id: article.id,
+    code: article.code,
+    barcode: article.barcode ?? null,
+    name: article.name,
+    presentation: article.presentation,
+    units_per_box: article.unitsPerBox,
+    applies_expiry: article.appliesExpiry,
+    active: article.active,
+  })).error);
+}
+
+export async function saveClient(client: SupabaseClient, businessClient: Client) {
+  raise((await client.from('clients').upsert({
+    id: businessClient.id,
+    name: businessClient.name,
+    active: businessClient.active,
+  })).error);
+}
+
+export async function saveWarehouse(client: SupabaseClient, warehouse: Warehouse) {
+  raise((await client.from('warehouses').upsert({
+    id: warehouse.id,
+    client_id: warehouse.clientId,
+    name: warehouse.name,
+    active: warehouse.active,
+    last_count_at: warehouse.lastCountAt ?? null,
+  })).error);
+}
+
+export async function saveClientArticleAssignments(client: SupabaseClient, clientId: string, articleIds: string[], activeArticleIds: string[]) {
+  const active = new Set(activeArticleIds);
+  if (!articleIds.length) return;
+  raise((await client.from('client_articles').upsert(articleIds.map((articleId) => ({
+    client_id: clientId,
+    article_id: articleId,
+    active: active.has(articleId),
+  })))).error);
 }
 
 export function buildDraftCount(id: string, clientId: string, warehouseId: string, counterId: string, scopeArticleIds: string[]): InventoryCount {
