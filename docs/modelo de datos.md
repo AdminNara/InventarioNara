@@ -271,7 +271,7 @@ Puede:
 
 Importante:
 
-- Estas reglas son simuladas en la interfaz. No representan seguridad real porque el prototipo no tiene backend ni autenticacion.
+- Estas reglas se implementan con Supabase Auth, perfiles vinculados en `public.app_users` y politicas RLS versionadas en `supabase/migrations/`. La interfaz sigue mostrando estados y permisos, pero la fuente de verdad de autorizacion es la base de datos.
 
 ## Formularios y acciones relacionados con el modelo
 

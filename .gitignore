@@ -3,6 +3,9 @@ dist/
 .vite/
 .vercel/
 tmp/
+test-results/
+playwright-report/
+output/playwright/
 .env
 .env.*
 !.env.example

@@ -67,9 +67,14 @@ Usa `⬜ Pendiente`, `🟨 En curso`, `✅ Terminado` o `⛔ Bloqueado`. No marq
 ## Cierre del prototipo
 
 - **TASK-023 · ✅ Terminado:** Preparar instrucciones de uso, instalación, restablecimiento y escenarios de demostración.
-- **TASK-024 · ⬜ Pendiente:** Empaquetar el frontend aprobado sin `node_modules`, backend, Supabase ni despliegue.
+- **TASK-024 · ✅ Terminado:** Conectar el frontend aprobado a Supabase y Vercel sin versionar secretos.
+  - Verificación: variables públicas documentadas, migraciones versionadas, `.env*` ignorado y producción desplegada en Vercel.
 - **TASK-025 · ✅ Terminado:** Migrar el almacén local a versión 2, incorporar los 15 productos del PDF y publicar el PDF local desde Perfil.
   - Verificación: IDs, conteos, lotes y alcances v1 se preservan; origen y copia pública del PDF comparten SHA-256; `npm run build` finaliza correctamente.
+- **TASK-026 · 🟨 En curso:** Estabilizar producción con scripts `typecheck`, `audit`, `verify` y pruebas e2e de humo.
+  - Verificación: `npm run verify` sin errores; pruebas e2e locales y productivas ejecutadas con credenciales `E2E_*`.
+- **TASK-027 · ⛔ Bloqueado:** Validar autenticación productiva Contador/Supervisor y registrar evidencia sin credenciales.
+  - Verificación pendiente: ejecutar Playwright con `E2E_COUNTER_*` y `E2E_SUPERVISOR_*`; no versionar credenciales.
 
 ## Evidencia de ejecución — 22 jul 2026
 

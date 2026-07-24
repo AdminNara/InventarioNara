@@ -5,7 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build"
+    "typecheck": "tsc -b",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "audit": "npm audit --audit-level=low",
+    "e2e": "playwright test",
+    "verify": "npm run typecheck && npm run build && npm run audit"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.110.8",
@@ -15,9 +20,11 @@
     "react-dom": "19.2.6"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
+    "esbuild": "^0.28.1",
     "typescript": "5.9.3",
-    "vite": "7.3.5"
+    "vite": "^7.3.6"
   }
 }

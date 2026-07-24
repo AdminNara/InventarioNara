@@ -24,11 +24,11 @@ Un levantamiento cerrado debe contener una decisión explícita para cada artíc
 - Estados Borrador, En revisión y Cerrado; un borrador vencido es una condición del estado Borrador.
 - Reapertura supervisada con motivo obligatorio.
 - Administración local simulada de artículos, clientes, bodegas y asignaciones.
-- Persistencia ficticia en `localStorage` y restablecimiento del escenario inicial.
+- Persistencia remota en Supabase Postgres con Supabase Auth y RLS. `localStorage` queda limitado a compatibilidad/migración de escenarios locales antiguos y estado auxiliar de demostración.
 
 ## Fuera de alcance
 
-Backend, base de datos remota, autenticación, autorización real, datos productivos, sincronización entre dispositivos, modo sin conexión productivo, ERP, notificaciones, auditoría legal, Supabase, Vercel y despliegue. La cámara se usa únicamente en el navegador local para leer Code 128; no guarda ni transmite imágenes.
+ERP, notificaciones, auditoría legal, modo sin conexión productivo y administración avanzada de usuarios. Supabase, Vercel, autenticación y autorización real ya forman parte del alcance productivo. La cámara se usa en el navegador para leer Code 128; no guarda ni transmite imágenes.
 
 ## Reloj de demostración
 
@@ -206,4 +206,4 @@ La reapertura conserva todas las líneas y agrega un evento al historial. No bor
 
 ## Decisiones pendientes
 
-No existen decisiones bloqueantes para construir el prototipo local. La lectura física requiere permiso y un navegador que implemente `BarcodeDetector` con `code_128`; cuando no está disponible se usa el ingreso manual. La sincronización real, Supabase y Vercel se reservan para una etapa posterior expresamente autorizada.
+No existen decisiones bloqueantes para ejecutar la aplicación conectada. La lectura física requiere permiso y un navegador que implemente `BarcodeDetector` con `code_128`; cuando no está disponible se usa el ingreso manual. La estabilidad productiva depende de mantener configuradas las variables Supabase en Vercel y de validar login real para Contador y Supervisor antes de etiquetar una versión.
