@@ -168,7 +168,7 @@ La reapertura conserva todas las líneas y agrega un evento al historial. No bor
   - ART-00418 — Galletas Nara chocolate 6x12 — caja de 72 — no aplica vencimiento.
   - ART-00805 — Jugo Nara naranja 1 L — unidad — aplica vencimiento.
   - ART-00920 — Cereal Nara 450 g — caja de 12 — no aplica vencimiento.
-- Completa el conjunto con 41 artículos deterministas. Los IDs `a-1001` a `a-1015` usan los nombres y códigos Code 128 de `codigos_de_barras_code128.pdf`; los restantes conservan códigos internos `ART-01016` a `ART-01041`. Los primeros 37 están activos y los últimos 4 inactivos; al menos cuatro activos adicionales aplican vencimiento.
+- Completa el conjunto con 41 artículos deterministas. Los IDs `a-1001` a `a-1015` usan los nombres y códigos Code 128 de `public/codigos_de_barras_code128.pdf`; los restantes conservan códigos internos `ART-01016` a `ART-01041`. Los primeros 37 están activos y los últimos 4 inactivos; al menos cuatro activos adicionales aplican vencimiento.
 
 ### Escenarios iniciales
 
